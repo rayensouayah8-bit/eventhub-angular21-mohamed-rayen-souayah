@@ -1,0 +1,36 @@
+<!-- Le détail affiche une fiche complète, ou un message si l'identifiant est inconnu. -->
+<main class="details-page">
+  @if (event(); as currentEvent) {
+    <a class="back-link" routerLink="/events"><span aria-hidden="true">←</span> Retour aux événements</a>
+    <article class="details-card">
+      <div class="details-image">
+        <img [src]="currentEvent.image" [alt]="'Illustration de ' + currentEvent.title" width="400" height="250">
+        <span class="category-badge">{{ currentEvent.category | uppercase }}</span>
+      </div>
+      <div class="details-content">
+        <span class="details-date">{{ currentEvent.date | date:'EEEE d MMMM y':'':'fr' }}</span>
+        <h1>{{ currentEvent.title }}</h1>
+        <p class="details-description">{{ currentEvent.description }}</p>
+        <div class="details-facts">
+          <div><span class="fact-icon">⌖</span><span><small>Lieu</small><strong>{{ currentEvent.location }}</strong></span></div>
+          <div><span class="fact-icon">◷</span><span><small>Date</small><strong>{{ currentEvent.date | date:'d MMMM y':'':'fr' }}</strong></span></div>
+          <div><span class="fact-icon">€</span><span><small>Participation</small><strong>{{ currentEvent.price === 0 ? 'Gratuit' : (currentEvent.price | currency:'EUR':'symbol':'1.0-0':'fr') }}</strong></span></div>
+        </div>
+        <button
+          class="favorite-action"
+          type="button"
+          [class.is-favorite]="favorite()"
+          [attr.aria-pressed]="favorite()"
+          (click)="toggleFavorite()"
+        >{{ favorite() ? '♥ Retirer des favoris' : '♡ Ajouter aux favoris' }}</button>
+      </div>
+    </article>
+  } @else {
+    <section class="missing-event">
+      <span aria-hidden="true">✦</span>
+      <h1>Événement introuvable</h1>
+      <p>Ce rendez-vous n’existe pas ou n’est plus disponible.</p>
+      <a routerLink="/events">Revenir au catalogue</a>
+    </section>
+  }
+</main>

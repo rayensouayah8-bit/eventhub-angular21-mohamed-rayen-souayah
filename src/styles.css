@@ -1,1 +1,55 @@
-/* You can add global styles to this file, and also import other style files */
+/* Les variables et les styles globaux définissent l'identité visuelle EventHub. */
+:root {
+  color-scheme: light;
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  --color-primary: #6366f1;
+  --color-primary-dark: #8b5cf6;
+  --color-accent: #f59e0b;
+  --color-background: #f8fafc;
+  --color-text: #1e293b;
+  --color-muted: #64748b;
+  --color-success: #10b981;
+  --color-danger: #ef4444;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  min-width: 320px;
+  scroll-behavior: smooth;
+  scroll-padding-top: 5rem;
+}
+
+body {
+  min-width: 320px;
+  min-height: 100vh;
+  margin: 0;
+  background: var(--color-background);
+  color: var(--color-text);
+}
+
+button,
+a {
+  -webkit-tap-highlight-color: transparent;
+}
+
+button:focus-visible,
+a:focus-visible {
+  outline: 3px solid #a5b4fc;
+  outline-offset: 3px;
+}
+
+::selection {
+  background: #c7d2fe;
+  color: #312e81;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}

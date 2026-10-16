@@ -1,0 +1,30 @@
+/* Ce style gère uniquement la mise en page persistante de l'application. */
+:host {
+  display: block;
+  min-height: 100vh;
+}
+
+.site-footer {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1.4rem clamp(1.25rem, 6vw, 5.5rem);
+  border-top: 1px solid #e9edf5;
+  background: #fff;
+  color: #94a3b8;
+  font-size: 0.76rem;
+}
+
+.site-footer a {
+  color: #6366f1;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+@media (max-width: 560px) {
+  .site-footer {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+}

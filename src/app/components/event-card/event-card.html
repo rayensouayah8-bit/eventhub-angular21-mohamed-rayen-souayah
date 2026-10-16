@@ -1,0 +1,32 @@
+<!-- Une carte compacte relie vers le détail et expose un bouton favori accessible. -->
+<article class="event-card">
+  <a class="image-link" [routerLink]="['/events', event().id]" [attr.aria-label]="'Voir le détail : ' + event().title">
+    <img [src]="event().image" [alt]="'Illustration de ' + event().title" loading="lazy" width="400" height="250">
+    <span class="category-badge">{{ event().category | uppercase }}</span>
+  </a>
+
+  <div class="card-content">
+    <div class="event-date">{{ event().date | date:'d MMMM y':'':'fr' }}</div>
+    <h2><a [routerLink]="['/events', event().id]">{{ event().title }}</a></h2>
+    <p class="event-description">{{ event().description }}</p>
+    <div class="event-meta">
+      <span class="event-location"><span aria-hidden="true">⌖</span> {{ event().location }}</span>
+      @if (event().price === 0) {
+        <span class="event-price free">Gratuit</span>
+      } @else {
+        <span class="event-price">{{ event().price | currency:'EUR':'symbol':'1.0-0':'fr' }}</span>
+      }
+    </div>
+    <div class="card-actions">
+      <a class="details-link" [routerLink]="['/events', event().id]">Découvrir l’événement <span aria-hidden="true">→</span></a>
+      <button
+        class="favorite-button"
+        type="button"
+        [class.is-favorite]="favorite()"
+        [attr.aria-pressed]="favorite()"
+        [attr.aria-label]="favorite() ? 'Retirer ' + event().title + ' des favoris' : 'Ajouter ' + event().title + ' aux favoris'"
+        (click)="favoriteToggle.emit(event().id)"
+      >{{ favorite() ? '♥' : '♡' }}</button>
+    </div>
+  </div>
+</article>

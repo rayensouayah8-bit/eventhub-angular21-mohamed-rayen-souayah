@@ -1,0 +1,65 @@
+<!-- La page d'accueil propose un aperçu éditorial, les filtres et les résultats. -->
+<main class="events-page">
+  <section class="hero" aria-labelledby="hero-title">
+    <div class="hero-copy">
+      <span class="eyebrow"><span class="eyebrow-dot"></span> LA VIE ÉTUDIANTE, EN MOUVEMENT</span>
+      <h1 id="hero-title">Des expériences<br>qui <span>font grandir.</span></h1>
+      <p>Ateliers, idées et rencontres : trouvez votre prochain rendez-vous sur le campus.</p>
+      <a class="hero-cta" href="#catalogue">Explorer les événements <span aria-hidden="true">↓</span></a>
+      <div class="hero-proof"><span class="proof-avatars" aria-hidden="true">M&nbsp; S&nbsp; A</span><span>La communauté universitaire vous attend</span></div>
+    </div>
+    <div class="hero-art" aria-label="Illustration d'un événement étudiant">
+      <div class="art-orbit orbit-one"></div>
+      <div class="art-orbit orbit-two"></div>
+      <div class="art-spark spark-one">✦</div>
+      <div class="art-spark spark-two">✧</div>
+      <div class="art-note note-top"><span class="note-icon">✦</span><span><strong>Des idées</strong><small>à partager</small></span></div>
+      <div class="art-center"><span class="center-symbol">E</span><span>ON SE<br>RETROUVE ?</span></div>
+      <div class="art-note note-bottom"><span class="note-icon">♡</span><span><strong>De beaux moments</strong><small>à vivre ensemble</small></span></div>
+    </div>
+    <div class="hero-stats" aria-label="Le catalogue en chiffres">
+      <div><strong>06</strong><span>événements à venir</span></div>
+      <div><strong>03</strong><span>univers à explorer</span></div>
+      <div><strong>02</strong><span>rendez-vous gratuits</span></div>
+    </div>
+  </section>
+
+  <section id="catalogue" class="catalogue" aria-labelledby="catalogue-title">
+    <div class="section-heading">
+      <div>
+        <span class="section-kicker">LE PROGRAMME</span>
+        <h2 id="catalogue-title">À ne pas manquer<span>.</span></h2>
+        <p>Des rendez-vous pensés pour apprendre, rencontrer et bouger.</p>
+      </div>
+      <span class="event-count">{{ filteredEvents().length }} événements</span>
+    </div>
+
+    <div class="category-filters" aria-label="Filtrer les événements par catégorie">
+      @for (category of categories; track category) {
+        <button
+          type="button"
+          class="filter-button"
+          [class.selected]="selectedCategory() === category"
+          [attr.aria-pressed]="selectedCategory() === category"
+          (click)="selectCategory(category)"
+        >{{ category }}</button>
+      }
+    </div>
+
+    <div class="events-grid">
+      @for (event of filteredEvents(); track event.id) {
+        <app-event-card
+          [event]="event"
+          [favorite]="isFavorite(event.id)"
+          (favoriteToggle)="toggleFavorite($event)"
+        />
+      } @empty {
+        <div class="empty-state">
+          <span aria-hidden="true">✦</span>
+          <h3>Aucun événement dans cette catégorie</h3>
+          <p>Choisissez une autre catégorie pour découvrir le programme.</p>
+        </div>
+      }
+    </div>
+  </section>
+</main>

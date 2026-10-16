@@ -1,0 +1,30 @@
+<!-- La liste se recalcule avec le signal des favoris et guide l'utilisateur si elle est vide. -->
+<main class="favorites-page">
+  <section class="favorites-heading" aria-labelledby="favorites-title">
+    <span class="section-kicker">VOTRE SÉLECTION</span>
+    <h1 id="favorites-title">Mes favoris<span>.</span></h1>
+    <p>Retrouvez ici les événements que vous souhaitez garder en vue.</p>
+  </section>
+
+  <section class="favorites-results" aria-label="Événements favoris">
+    <div class="favorites-count" aria-live="polite">
+      {{ favoriteEvents().length }} événement{{ favoriteEvents().length === 1 ? '' : 's' }}
+    </div>
+    <div class="favorites-grid">
+      @for (event of favoriteEvents(); track event.id) {
+        <app-event-card
+          [event]="event"
+          [favorite]="true"
+          (favoriteToggle)="toggleFavorite($event)"
+        />
+      } @empty {
+        <div class="empty-state">
+          <span class="empty-icon" aria-hidden="true">♡</span>
+          <h2>Votre sélection est encore vide</h2>
+          <p>Ajoutez un événement à vos favoris avec le bouton cœur. Il apparaîtra ici et vous pourrez le retirer à tout moment.</p>
+          <a routerLink="/events">Découvrir les événements <span aria-hidden="true">→</span></a>
+        </div>
+      }
+    </div>
+  </section>
+</main>

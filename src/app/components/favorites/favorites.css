@@ -1,0 +1,135 @@
+/* Cette page met en avant la sélection personnelle et son état vide. */
+.favorites-page {
+  min-height: 72vh;
+  padding: 4rem clamp(1.25rem, 7vw, 6rem) 5rem;
+  animation: favorites-enter 0.45s ease both;
+}
+
+.favorites-heading {
+  max-width: 760px;
+  margin: 0 auto 2.25rem;
+  text-align: center;
+}
+
+.section-kicker {
+  color: #6366f1;
+  font-size: 0.72rem;
+  font-weight: 850;
+  letter-spacing: 0.14em;
+}
+
+.favorites-heading h1 {
+  margin: 0.7rem 0 0.55rem;
+  color: #1e293b;
+  font-size: clamp(2.6rem, 7vw, 4.4rem);
+  font-weight: 850;
+  letter-spacing: -0.07em;
+  line-height: 1.05;
+}
+
+.favorites-heading h1 span {
+  color: #8b5cf6;
+}
+
+.favorites-heading p {
+  margin: 0;
+  color: #64748b;
+  font-size: 1rem;
+  line-height: 1.6;
+}
+
+.favorites-results {
+  max-width: 1280px;
+  margin: 0 auto;
+}
+
+.favorites-count {
+  margin-bottom: 1rem;
+  color: #64748b;
+  font-size: 0.82rem;
+  font-weight: 700;
+}
+
+.favorites-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 290px), 1fr));
+  gap: 1.5rem;
+}
+
+.empty-state {
+  grid-column: 1 / -1;
+  display: grid;
+  min-height: 20rem;
+  align-content: center;
+  justify-items: center;
+  padding: 2.5rem 1.25rem;
+  border: 1px dashed #c7d2fe;
+  border-radius: 20px;
+  background: linear-gradient(145deg, #fff, #f8f7ff);
+  text-align: center;
+}
+
+.empty-icon {
+  display: grid;
+  width: 4rem;
+  height: 4rem;
+  place-items: center;
+  border-radius: 1.25rem;
+  background: #eef2ff;
+  color: #6366f1;
+  font-size: 2rem;
+}
+
+.empty-state h2 {
+  margin: 1.15rem 0 0.45rem;
+  color: #1e293b;
+  font-size: clamp(1.25rem, 4vw, 1.65rem);
+  letter-spacing: -0.04em;
+}
+
+.empty-state p {
+  max-width: 34rem;
+  margin: 0;
+  color: #64748b;
+  font-size: 0.92rem;
+  line-height: 1.65;
+}
+
+.empty-state a {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.65rem;
+  margin-top: 1.4rem;
+  padding: 0.8rem 1rem;
+  border-radius: 12px;
+  background: linear-gradient(135deg, #6366f1, #8b5cf6);
+  color: #fff;
+  font-size: 0.86rem;
+  font-weight: 750;
+  text-decoration: none;
+  transition: transform 0.3s ease;
+}
+
+.empty-state a:hover {
+  transform: scale(1.03);
+}
+
+@keyframes favorites-enter {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@media (max-width: 600px) {
+  .favorites-page {
+    padding-top: 3rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}

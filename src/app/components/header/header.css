@@ -1,0 +1,114 @@
+
+/* Ces règles gardent une navigation lisible et compacte sur tous les écrans. */
+.site-header {
+  position: sticky;
+  z-index: 10;
+  top: 0;
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  gap: 1rem;
+  padding: 0.9rem clamp(1rem, 5vw, 4.5rem);
+  border-bottom: 1px solid rgb(255 255 255 / 12%);
+  background: rgb(30 41 59 / 94%);
+  backdrop-filter: blur(14px);
+  color: #fff;
+}
+
+.logo {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.65rem;
+  justify-self: start;
+  color: #fff;
+  font-size: 1.2rem;
+  font-weight: 800;
+  text-decoration: none;
+  letter-spacing: -0.04em;
+}
+
+.logo-mark {
+  display: grid;
+  width: 2.25rem;
+  aspect-ratio: 1;
+  place-items: center;
+  border-radius: 0.75rem;
+  background: linear-gradient(135deg, #6366f1, #8b5cf6);
+  box-shadow: 0 5px 15px rgb(99 102 241 / 35%);
+}
+
+nav {
+  display: flex;
+  align-items: center;
+  gap: clamp(0.5rem, 2vw, 1.75rem);
+}
+
+nav a {
+  position: relative;
+  padding: 0.65rem 0.25rem;
+  color: #cbd5e1;
+  font-size: 0.9rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+nav a:hover,
+nav a.active {
+  color: #fff;
+}
+
+nav a.active::after {
+  position: absolute;
+  right: 0;
+  bottom: 0.25rem;
+  left: 0;
+  height: 2px;
+  border-radius: 2px;
+  background: #a5b4fc;
+  content: '';
+}
+
+.header-favorites {
+  display: flex;
+  align-items: center;
+  justify-self: end;
+  gap: 0.4rem;
+  color: #fbbf24;
+  font-size: 0.9rem;
+  font-weight: 800;
+  text-decoration: none;
+  transition: transform 0.3s ease;
+}
+
+.header-favorites:hover {
+  transform: scale(1.05);
+}
+
+.header-favorites > span:first-child {
+  font-size: 1.1rem;
+}
+
+.favorites-label {
+  color: #cbd5e1;
+  font-weight: 500;
+}
+
+@media (max-width: 560px) {
+  .site-header {
+    grid-template-columns: 1fr auto;
+    gap: 0.4rem 0.8rem;
+    padding-block: 0.7rem;
+  }
+
+  nav {
+    grid-row: 2;
+    grid-column: 1 / -1;
+    justify-content: center;
+  }
+
+  .header-favorites {
+    grid-row: 1;
+    grid-column: 2;
+  }
+}

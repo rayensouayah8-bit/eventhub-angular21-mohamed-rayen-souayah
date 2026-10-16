@@ -1,0 +1,20 @@
+
+<!-- La navigation utilise les liens Angular pour éviter de recharger la page. -->
+<header class="site-header">
+  <a class="logo" routerLink="/events" aria-label="EventHub, accueil">
+    <span class="logo-mark" aria-hidden="true">E</span>
+    <span>EventHub</span>
+  </a>
+
+  <nav aria-label="Navigation principale">
+    <a routerLink="/events" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Événements</a>
+    <a routerLink="/favorites" routerLinkActive="active">Favoris</a>
+    <a routerLink="/about" routerLinkActive="active">À propos</a>
+  </nav>
+
+  <a class="header-favorites" routerLink="/favorites" [attr.aria-label]="favorites.count() + ' événement(s) favori(s). Ouvrir les favoris'">
+    <span aria-hidden="true">♥</span>
+    <span>{{ favorites.count() }}</span>
+    <span class="favorites-label">favoris</span>
+  </a>
+</header>

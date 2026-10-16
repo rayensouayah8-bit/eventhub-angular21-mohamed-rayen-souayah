@@ -1,59 +1,61 @@
-# EventhubFayce
+# EventHub, Mohamed Rayen Souayah
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 21.2.27.
+EventHub est un catalogue responsive d'événements universitaires développé avec Angular 21 standalone. L'application permet de consulter six événements, de filtrer par catégorie, de gérer une liste de favoris et d'afficher les détails de chaque événement.
 
-## Development server
+## Fonctionnalités
 
-To start a local development server, run:
+- Catalogue de six événements répartis en trois catégories.
+- Filtres par atelier, conférence et sport.
+- Gestion des favoris et compteur dans le menu.
+- Page Favoris dédiée.
+- Pages de détail accessibles par identifiant.
+- Page À propos chargée en lazy loading.
+- Page 404 pour les URL inconnues.
+- Interface responsive et navigation au clavier.
 
-```bash
-ng serve
-```
+## Technologies
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+- Angular 21 standalone et TypeScript.
+- Signals : `signal()`, `computed()`, `set()` et `update()`.
+- Control flow : `@if`, `@else`, `@for` et `@empty`.
+- Pipes : `date`, `currency` et `uppercase`.
+- Communication entre composants avec `input()` et `output()`.
+- Angular Router, `withComponentInputBinding()` et `loadComponent()`.
+- CSS natif.
 
-## Code scaffolding
+## Installation et lancement
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
-
-```bash
-ng generate component component-name
-```
-
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
-
-```bash
-ng generate --help
-```
-
-## Building
-
-To build the project run:
+Prérequis : une version de Node.js compatible avec Angular 21 et npm.
 
 ```bash
-ng build
+npm install
+npm start
 ```
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
+Ouvre ensuite l'adresse locale indiquée dans le terminal. Par exemple, `http://localhost:4200/` ou `http://localhost:4201/`, selon le port utilisé.
 
-## Running unit tests
-
-To execute unit tests with the [Vitest](https://vitest.dev/) test runner, use the following command:
+## Tests
 
 ```bash
-ng test
+npm test -- --watch=false
+npm run build
 ```
 
-## Running end-to-end tests
+## Captures d'écran
 
-For end-to-end (e2e) testing, run:
+Les captures sont enregistrées dans `docs/screenshots/`.
 
-```bash
-ng e2e
-```
+### Catalogue des événements
 
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
+![Catalogue EventHub](docs/screenshots/01-catalogue.png)
 
-## Additional Resources
+### Filtre par catégorie
 
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+![Filtre par catégorie](docs/screenshots/02-filtre-categorie.png)
+
+### Détail d'un événement favori
+
+![Détail d'un événement favori](docs/screenshots/03-detail-favori.png)
+
+## Page À propos sur mobile
+![Page À propos mobile](docs/screenshots/04-a-propos-mobile.png)
