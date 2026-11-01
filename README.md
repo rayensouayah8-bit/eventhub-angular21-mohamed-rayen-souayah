@@ -72,18 +72,39 @@ Puis ouvrez l'application dans le navigateur sur l'URL affichée par Angular (pa
 
 ## Captures d'écran
 
-Les captures d'écran du projet sont sauvegardées dans le dossier `docs/screenshots/`.
+Les captures d'écran du projet sont sauvegardées dans `docs/screenshots/`.
 
-- Catalogue des événements : `docs/screenshots/01-catalogue.png`
-- Filtre par catégorie : `docs/screenshots/02-filtre-categorie.png`
-- Détail d'un événement : `docs/screenshots/03-detail-favori.png`
-- Version mobile : `docs/screenshots/04-a-propos-mobile.png`
-- Formulaire de création : `docs/screenshots/formulaire.png`
-- Liste des événements : `docs/screenshots/liste.png`
+### Catalogue des événements
+
+![Catalogue des événements](docs/screenshots/01-catalogue.png)
+
+### Filtre par catégorie
+
+![Filtre par catégorie](docs/screenshots/02-filtre-categorie.png)
+
+### Détail d'un événement favori
+
+![Détail d'un événement favori](docs/screenshots/03-detail-favori.png)
+
+### Version mobile
+
+![Page À propos sur mobile](docs/screenshots/04-a-propos-mobile.png)
+
+### Formulaire de création
 
 ![Formulaire EventHub](docs/screenshots/formulaire.png)
 
+### Liste des événements
+
 ![Liste EventHub](docs/screenshots/liste.png)
+
+### Autres captures
+
+![Capture EventHub 1](<docs/screenshots/Capture d'écran 2026-10-16 140007.png>)
+
+![Capture EventHub 2](<docs/screenshots/Capture d'écran 2026-10-16 140746.png>)
+
+![Capture EventHub 3](<docs/screenshots/Capture d'écran 2026-10-16 140813.png>)
 
 ## Vérification
 
@@ -92,4 +113,3 @@ npm run build
 ```
 
 Le build Angular doit se terminer sans erreur. Une alerte de budget CSS peut apparaître selon la configuration de l'environnement, mais la compilation reste valide.
-
