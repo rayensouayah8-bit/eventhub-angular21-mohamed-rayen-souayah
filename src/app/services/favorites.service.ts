@@ -1,28 +1,19 @@
 // Ce service conserve les favoris partagés entre les pages et le bandeau.
-import { computed, Injectable, signal } from '@angular/core';
+import { computed, inject, Injectable } from '@angular/core';
+import { EventService } from './event.service';
 
 @Injectable({ providedIn: 'root' })
 export class FavoritesService {
-  private readonly favoriteIds = signal<Set<string>>(new Set());
+  private readonly eventService = inject(EventService);
 
-  readonly ids = computed(() => this.favoriteIds());
-  readonly count = computed(() => this.favoriteIds().size);
+  readonly ids = computed(() => this.eventService.favorites());
+  readonly count = computed(() => this.eventService.favoriteCount());
 
   isFavorite(eventId: string): boolean {
-    return this.favoriteIds().has(eventId);
+    return this.eventService.favorites().has(eventId);
   }
 
   toggle(eventId: string): void {
-    this.favoriteIds.update((currentIds) => {
-      const nextIds = new Set(currentIds);
-
-      if (nextIds.has(eventId)) {
-        nextIds.delete(eventId);
-      } else {
-        nextIds.add(eventId);
-      }
-
-      return nextIds;
-    });
+    this.eventService.toggleFavorite(eventId);
   }
 }

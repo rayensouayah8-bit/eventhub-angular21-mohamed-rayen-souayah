@@ -15,4 +15,17 @@ export class EventCard {
   readonly event = input.required<Event>();
   readonly favorite = input(false);
   readonly favoriteToggle = output<string>();
+  readonly deleteRequested = output<string>();
+
+  onFavoriteToggle(event: MouseEvent): void {
+    event.preventDefault();
+    event.stopPropagation();
+    this.favoriteToggle.emit(this.event().id);
+  }
+
+  onDelete(event: MouseEvent): void {
+    event.preventDefault();
+    event.stopPropagation();
+    this.deleteRequested.emit(this.event().id);
+  }
 }

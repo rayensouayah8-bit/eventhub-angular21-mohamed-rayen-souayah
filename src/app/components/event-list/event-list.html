@@ -18,9 +18,9 @@
       <div class="art-note note-bottom"><span class="note-icon">♡</span><span><strong>De beaux moments</strong><small>à vivre ensemble</small></span></div>
     </div>
     <div class="hero-stats" aria-label="Le catalogue en chiffres">
-      <div><strong>06</strong><span>événements à venir</span></div>
-      <div><strong>03</strong><span>univers à explorer</span></div>
-      <div><strong>02</strong><span>rendez-vous gratuits</span></div>
+      <div><strong>{{ eventCount() }}</strong><span>événements à venir</span></div>
+      <div><strong>{{ favoriteCount() }}</strong><span>univers à explorer</span></div>
+      <div><strong>{{ freeEventCount() }}</strong><span>rendez-vous gratuits</span></div>
     </div>
   </section>
 
@@ -31,20 +31,39 @@
         <h2 id="catalogue-title">À ne pas manquer<span>.</span></h2>
         <p>Des rendez-vous pensés pour apprendre, rencontrer et bouger.</p>
       </div>
-      <span class="event-count">{{ filteredEvents().length }} événements</span>
+      <div class="toolbar-actions">
+        <a class="primary-action" routerLink="/events/add">Ajouter un événement</a>
+        <span class="event-count">{{ filteredEvents().length }} événements</span>
+      </div>
     </div>
 
-    <div class="category-filters" aria-label="Filtrer les événements par catégorie">
-      @for (category of categories; track category) {
-        <button
-          type="button"
-          class="filter-button"
-          [class.selected]="selectedCategory() === category"
-          [attr.aria-pressed]="selectedCategory() === category"
-          (click)="selectCategory(category)"
-        >{{ category }}</button>
-      }
+    <div class="search-and-filter">
+      <label class="search-field" aria-label="Rechercher un événement">
+        <span class="sr-only">Rechercher</span>
+        <input
+          type="search"
+          [value]="searchTerm()"
+          placeholder="Rechercher par titre, lieu ou description"
+          (input)="setSearchTerm($any($event.target).value)"
+        />
+      </label>
+
+      <div class="category-filters" aria-label="Filtrer les événements par catégorie">
+        @for (category of categories; track category) {
+          <button
+            type="button"
+            class="filter-button"
+            [class.selected]="selectedCategory() === category"
+            [attr.aria-pressed]="selectedCategory() === category"
+            (click)="selectCategory(category)"
+          >{{ category }}</button>
+        }
+      </div>
     </div>
+
+    @if (searchTerm() || selectedCategory() !== 'Tous') {
+      <button type="button" class="reset-filters" (click)="resetFilters()">Réinitialiser les filtres</button>
+    }
 
     <div class="events-grid">
       @for (event of filteredEvents(); track event.id) {
@@ -52,12 +71,14 @@
           [event]="event"
           [favorite]="isFavorite(event.id)"
           (favoriteToggle)="toggleFavorite($event)"
+          (deleteRequested)="deleteEvent($event)"
         />
       } @empty {
         <div class="empty-state">
           <span aria-hidden="true">✦</span>
-          <h3>Aucun événement dans cette catégorie</h3>
-          <p>Choisissez une autre catégorie pour découvrir le programme.</p>
+          <h3>Aucun événement ne correspond à votre recherche</h3>
+          <p>Essayez une autre combinaison de filtres ou réinitialisez la recherche pour retrouver le programme complet.</p>
+          <button type="button" class="reset-empty" (click)="resetFilters()">Réinitialiser</button>
         </div>
       }
     </div>

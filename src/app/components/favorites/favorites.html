@@ -16,6 +16,7 @@
           [event]="event"
           [favorite]="true"
           (favoriteToggle)="toggleFavorite($event)"
+          (deleteRequested)="deleteEvent($event)"
         />
       } @empty {
         <div class="empty-state">

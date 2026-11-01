@@ -1,7 +1,7 @@
 <!-- Une carte compacte relie vers le détail et expose un bouton favori accessible. -->
 <article class="event-card">
   <a class="image-link" [routerLink]="['/events', event().id]" [attr.aria-label]="'Voir le détail : ' + event().title">
-    <img [src]="event().image" [alt]="'Illustration de ' + event().title" loading="lazy" width="400" height="250">
+    <img [src]="event().image" [alt]="'Illustration de ' + event().title" loading="lazy" width="400" height="250" />
     <span class="category-badge">{{ event().category | uppercase }}</span>
   </a>
 
@@ -18,14 +18,17 @@
       }
     </div>
     <div class="card-actions">
-      <a class="details-link" [routerLink]="['/events', event().id]">Découvrir l’événement <span aria-hidden="true">→</span></a>
+      <div class="action-links">
+        <a class="details-link" [routerLink]="['/events', event().id]">Découvrir l’événement <span aria-hidden="true">→</span></a>
+        <button class="delete-button" type="button" (click)="onDelete($event)">Supprimer</button>
+      </div>
       <button
         class="favorite-button"
         type="button"
         [class.is-favorite]="favorite()"
         [attr.aria-pressed]="favorite()"
         [attr.aria-label]="favorite() ? 'Retirer ' + event().title + ' des favoris' : 'Ajouter ' + event().title + ' aux favoris'"
-        (click)="favoriteToggle.emit(event().id)"
+        (click)="onFavoriteToggle($event)"
       >{{ favorite() ? '♥' : '♡' }}</button>
     </div>
   </div>

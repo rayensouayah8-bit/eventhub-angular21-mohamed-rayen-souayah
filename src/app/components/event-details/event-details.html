@@ -4,7 +4,7 @@
     <a class="back-link" routerLink="/events"><span aria-hidden="true">←</span> Retour aux événements</a>
     <article class="details-card">
       <div class="details-image">
-        <img [src]="currentEvent.image" [alt]="'Illustration de ' + currentEvent.title" width="400" height="250">
+        <img [src]="currentEvent.image" [alt]="'Illustration de ' + currentEvent.title" width="400" height="250" />
         <span class="category-badge">{{ currentEvent.category | uppercase }}</span>
       </div>
       <div class="details-content">
@@ -16,13 +16,16 @@
           <div><span class="fact-icon">◷</span><span><small>Date</small><strong>{{ currentEvent.date | date:'d MMMM y':'':'fr' }}</strong></span></div>
           <div><span class="fact-icon">€</span><span><small>Participation</small><strong>{{ currentEvent.price === 0 ? 'Gratuit' : (currentEvent.price | currency:'EUR':'symbol':'1.0-0':'fr') }}</strong></span></div>
         </div>
-        <button
-          class="favorite-action"
-          type="button"
-          [class.is-favorite]="favorite()"
-          [attr.aria-pressed]="favorite()"
-          (click)="toggleFavorite()"
-        >{{ favorite() ? '♥ Retirer des favoris' : '♡ Ajouter aux favoris' }}</button>
+        <div class="details-actions">
+          <button
+            class="favorite-action"
+            type="button"
+            [class.is-favorite]="favorite()"
+            [attr.aria-pressed]="favorite()"
+            (click)="toggleFavorite()"
+          >{{ favorite() ? '♥ Retirer des favoris' : '♡ Ajouter aux favoris' }}</button>
+          <button class="delete-action" type="button" (click)="deleteEvent()">Supprimer l’événement</button>
+        </div>
       </div>
     </article>
   } @else {

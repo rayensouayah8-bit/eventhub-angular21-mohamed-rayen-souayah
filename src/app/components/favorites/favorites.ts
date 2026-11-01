@@ -2,8 +2,8 @@
 import { ChangeDetectionStrategy, Component, computed, inject } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { EventCard } from '../event-card/event-card';
-import { EVENTS } from '../../data/events.data';
-import { FavoritesService } from '../../services/favorites.service';
+import { EventService } from '../../services/event.service';
+import { ToastService } from '../../services/toast.service';
 
 @Component({
   selector: 'app-favorites',
@@ -13,14 +13,32 @@ import { FavoritesService } from '../../services/favorites.service';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class Favorites {
-  private readonly favorites = inject(FavoritesService);
+  private readonly eventService = inject(EventService);
+  private readonly toastService = inject(ToastService);
 
   readonly favoriteEvents = computed(() => {
-    const favoriteIds = this.favorites.ids();
-    return EVENTS.filter((event) => favoriteIds.has(event.id));
+    const favoriteIds = this.eventService.favorites();
+    return this.eventService.events().filter((event) => favoriteIds.has(event.id));
   });
 
   toggleFavorite(eventId: string): void {
-    this.favorites.toggle(eventId);
+    this.eventService.toggleFavorite(eventId);
+  }
+
+  deleteEvent(eventId: string): void {
+    const event = this.eventService.getEventById(eventId);
+
+    if (!event) {
+      return;
+    }
+
+    const confirmed = window.confirm(`Supprimer l’événement « ${event.title} » ?`);
+
+    if (!confirmed) {
+      return;
+    }
+
+    this.eventService.deleteEvent(eventId);
+    this.toastService.show('Événement supprimé avec succès.', 'success');
   }
 }

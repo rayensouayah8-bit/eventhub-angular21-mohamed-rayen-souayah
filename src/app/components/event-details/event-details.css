@@ -130,7 +130,14 @@
   font-size: 0.88rem;
 }
 
-.favorite-action {
+.details-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.8rem;
+}
+
+.favorite-action,
+.delete-action {
   padding: 0.85rem 1.1rem;
   border: 1px solid #e2e8f0;
   border-radius: 12px;
@@ -149,6 +156,12 @@
   border-color: #fcd34d;
   background: #fffbeb;
   color: #b45309;
+}
+
+.delete-action {
+  border-color: #fecaca;
+  background: #fff5f5;
+  color: #b91c1c;
 }
 
 .missing-event {
