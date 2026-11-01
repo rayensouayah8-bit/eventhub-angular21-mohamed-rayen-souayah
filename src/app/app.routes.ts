@@ -1,4 +1,5 @@
 import { Routes } from '@angular/router';
+import { EventForm } from './components/event-form/event-form';
 import { EventList } from './components/event-list/event-list';
 import { EventDetails } from './components/event-details/event-details';
 import { NotFound } from './components/not-found/not-found';
@@ -7,6 +8,7 @@ import { NotFound } from './components/not-found/not-found';
 export const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'events' },
   { path: 'events', component: EventList },
+  { path: 'events/add', component: EventForm },
   { path: 'events/:id', component: EventDetails },
   {
     path: 'favorites',

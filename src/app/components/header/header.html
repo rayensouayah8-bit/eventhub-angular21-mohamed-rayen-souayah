@@ -8,13 +8,14 @@
 
   <nav aria-label="Navigation principale">
     <a routerLink="/events" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Événements</a>
+    <a routerLink="/events/add" routerLinkActive="active">Ajouter un événement</a>
     <a routerLink="/favorites" routerLinkActive="active">Favoris</a>
     <a routerLink="/about" routerLinkActive="active">À propos</a>
   </nav>
 
-  <a class="header-favorites" routerLink="/favorites" [attr.aria-label]="favorites.count() + ' événement(s) favori(s). Ouvrir les favoris'">
+  <a class="header-favorites" routerLink="/favorites" [attr.aria-label]="eventService.favoriteCount() + ' événement(s) favori(s). Ouvrir les favoris'">
     <span aria-hidden="true">♥</span>
-    <span>{{ favorites.count() }}</span>
+    <span>{{ eventService.favoriteCount() }}</span>
     <span class="favorites-label">favoris</span>
   </a>
 </header>

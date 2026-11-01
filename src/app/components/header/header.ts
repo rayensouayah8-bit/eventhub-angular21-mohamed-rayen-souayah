@@ -2,7 +2,7 @@
 // Ce bandeau permet de naviguer et affiche le nombre de favoris en direct.
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { RouterLink, RouterLinkActive } from '@angular/router';
-import { FavoritesService } from '../../services/favorites.service';
+import { EventService } from '../../services/event.service';
 
 @Component({
   selector: 'app-header',
@@ -12,5 +12,5 @@ import { FavoritesService } from '../../services/favorites.service';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class Header {
-  readonly favorites = inject(FavoritesService);
+  readonly eventService = inject(EventService);
 }

@@ -1,0 +1,110 @@
+<main class="event-form-page">
+  <section class="form-panel" aria-labelledby="event-form-title">
+    <div class="panel-header">
+      <span class="section-kicker">NOUVEL ÉVÉNEMENT</span>
+      <h1 id="event-form-title">Créer un événement</h1>
+      <p>Ajoutez votre prochain rendez-vous au catalogue et partagez-le avec la communauté.</p>
+    </div>
+
+    <form class="event-form" [formGroup]="eventForm" (ngSubmit)="addEvent()" novalidate>
+      <div class="field-grid">
+        <label class="field">
+          <span>Titre</span>
+          <input type="text" formControlName="title" placeholder="Ex. Coding Bootcamp" />
+          @if ((titleControl.invalid && (titleControl.touched || submitted())) || (submitted() && titleControl.hasError('required'))) {
+            <small class="error-message">Le titre est obligatoire.</small>
+          }
+          @if (titleControl.hasError('minlength') && (titleControl.touched || submitted())) {
+            <small class="error-message">Le titre doit contenir au moins 5 caractères.</small>
+          }
+          @if (titleControl.hasError('maxlength') && (titleControl.touched || submitted())) {
+            <small class="error-message">Le titre ne peut pas dépasser 50 caractères.</small>
+          }
+        </label>
+
+        <label class="field">
+          <span>Catégorie</span>
+          <select formControlName="category">
+            <option value="">Sélectionnez une catégorie</option>
+            <option value="Atelier">Atelier</option>
+            <option value="Conférence">Conférence</option>
+            <option value="Sport">Sport</option>
+          </select>
+          @if (categoryControl.invalid && (categoryControl.touched || submitted())) {
+            <small class="error-message">Vous devez choisir une catégorie.</small>
+          }
+        </label>
+
+        <label class="field">
+          <span>Date</span>
+          <input type="date" formControlName="date" />
+          @if (dateControl.invalid && (dateControl.touched || submitted())) {
+            <small class="error-message">La date est obligatoire.</small>
+          }
+        </label>
+
+        <label class="field">
+          <span>Lieu</span>
+          <input type="text" formControlName="place" placeholder="Ex. Campus A, salle 12" />
+          @if (placeControl.hasError('required') && (placeControl.touched || submitted())) {
+            <small class="error-message">Le lieu est obligatoire.</small>
+          }
+          @if (placeControl.hasError('minlength') && (placeControl.touched || submitted())) {
+            <small class="error-message">Le lieu doit contenir au moins 3 caractères.</small>
+          }
+        </label>
+
+        <label class="field">
+          <span>Prix</span>
+          <input type="number" min="0" step="1" formControlName="price" />
+          @if (priceControl.hasError('required') && (priceControl.touched || submitted())) {
+            <small class="error-message">Le prix est obligatoire.</small>
+          }
+          @if (priceControl.hasError('min') && (priceControl.touched || submitted())) {
+            <small class="error-message">Le prix ne peut pas être négatif.</small>
+          }
+        </label>
+
+        <label class="field">
+          <span>Image URL</span>
+          <input type="url" formControlName="imageUrl" placeholder="https://example.com/image.jpg" />
+          @if (imageUrlControl.hasError('invalidUrl') && (imageUrlControl.touched || submitted())) {
+            <small class="error-message">L’URL de l’image n’est pas valide.</small>
+          }
+        </label>
+      </div>
+
+      <label class="field full-width">
+        <span>Description</span>
+        <textarea rows="6" formControlName="description" placeholder="Décrivez votre événement en détail..."></textarea>
+        @if (descriptionControl.hasError('required') && (descriptionControl.touched || submitted())) {
+          <small class="error-message">La description est obligatoire.</small>
+        }
+        @if (descriptionControl.hasError('minlength') && (descriptionControl.touched || submitted())) {
+          <small class="error-message">La description doit contenir au moins 20 caractères.</small>
+        }
+      </label>
+
+      @if (imagePreview()) {
+        <div class="image-preview">
+          <img [src]="imagePreview()" alt="Aperçu de l’image de l’événement" />
+        </div>
+      }
+
+      <div class="form-actions">
+        <button type="submit" class="primary-button" [disabled]="eventForm.invalid || isSubmitting()">
+          {{ isSubmitting() ? 'Publication...' : 'Publier l’événement' }}
+        </button>
+        <button type="button" class="secondary-button" (click)="cancel()">Annuler</button>
+      </div>
+    </form>
+  </section>
+
+  <aside class="diagnostic-panel" aria-live="polite">
+    <div class="diagnostic-header">
+      <span>Diagnostic</span>
+      <strong>{{ formStatus() }}</strong>
+    </div>
+    <pre>{{ formValue() | json }}</pre>
+  </aside>
+</main>

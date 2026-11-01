@@ -1,61 +1,95 @@
-# EventHub, Mohamed Rayen Souayah
+# EventHub
 
-EventHub est un catalogue responsive d'événements universitaires développé avec Angular 21 standalone. L'application permet de consulter six événements, de filtrer par catégorie, de gérer une liste de favoris et d'afficher les détails de chaque événement.
+EventHub est une plateforme de gestion et de découverte d'événements universitaires, développée avec Angular 21 en architecture standalone. Le projet couvre la Partie 1 et la Partie 2 du cahier des charges, avec un catalogue dynamique, des favoris, un service centralisé avec Signals, ainsi qu'un formulaire de création d'événements entièrement validé.
+
+## Technologies utilisées
+
+- Angular 21
+- TypeScript
+- Angular Router
+- Reactive Forms
+- Signals Angular (`signal`, `computed`, `asReadonly`, `set`, `update`)
+- Standalone components
+- CSS moderne et responsive
 
 ## Fonctionnalités
 
-- Catalogue de six événements répartis en trois catégories.
-- Filtres par atelier, conférence et sport.
-- Gestion des favoris et compteur dans le menu.
-- Page Favoris dédiée.
-- Pages de détail accessibles par identifiant.
-- Page À propos chargée en lazy loading.
-- Page 404 pour les URL inconnues.
-- Interface responsive et navigation au clavier.
+### Partie 1
 
-## Technologies
+- Catalogue d'événements
+- Filtres par catégorie
+- Recherche par mot-clé
+- Favoris avec compteur global
+- Détail des événements
+- Page favoris
+- Page À propos
+- Page 404
+- Navigation responsive
 
-- Angular 21 standalone et TypeScript.
-- Signals : `signal()`, `computed()`, `set()` et `update()`.
-- Control flow : `@if`, `@else`, `@for` et `@empty`.
-- Pipes : `date`, `currency` et `uppercase`.
-- Communication entre composants avec `input()` et `output()`.
-- Angular Router, `withComponentInputBinding()` et `loadComponent()`.
-- CSS natif.
+### Partie 2
 
-## Installation et lancement
+- Service `EventService` unique source de vérité
+- Computed Signals : total, favoris, gratuits
+- Création d'événement via formulaire réactif
+- Validation avancée du formulaire
+- Aperçu d'image
+- Diagnostic du formulaire en direct
+- Ajout réel dans le Signal partagé
+- Suppression avec confirmation
+- Toasts de notification
+- Route `/events/add` et navigation dédiée
 
-Prérequis : une version de Node.js compatible avec Angular 21 et npm.
+## Architecture du projet
+
+- `src/app/components` : composants Angular
+- `src/app/services` : services et logique partagée
+- `src/app/models` : modèles TypeScript
+- `src/app/data` : catalogues initiaux
+- `src/app/pages` : pages spécifiques
+
+## Installation
+
+Prérequis : Node.js compatible avec Angular 21 et npm.
 
 ```bash
 npm install
+```
+
+## Lancement
+
+```bash
 npm start
 ```
 
-Ouvre ensuite l'adresse locale indiquée dans le terminal. Par exemple, `http://localhost:4200/` ou `http://localhost:4201/`, selon le port utilisé.
+Puis ouvrez l'application dans le navigateur sur l'URL affichée par Angular (par défaut `http://localhost:4200`).
 
-## Tests
+## Exemples d'utilisation
 
-```bash
-npm test -- --watch=false
-npm run build
-```
+- Ouvrir le catalogue : `/events`
+- Ajouter un événement : `/events/add`
+- Consulter un détail : `/events/:id`
+- Voir les favoris : `/favorites`
 
 ## Captures d'écran
 
-Les captures sont enregistrées dans `docs/screenshots/`.
+Les captures d'écran du projet sont sauvegardées dans le dossier `docs/screenshots/`.
 
-### Catalogue des événements
+- Catalogue des événements : `docs/screenshots/01-catalogue.png`
+- Filtre par catégorie : `docs/screenshots/02-filtre-categorie.png`
+- Détail d'un événement : `docs/screenshots/03-detail-favori.png`
+- Version mobile : `docs/screenshots/04-a-propos-mobile.png`
+- Formulaire de création : `docs/screenshots/formulaire.png`
+- Liste des événements : `docs/screenshots/liste.png`
 
-![Catalogue EventHub](docs/screenshots/01-catalogue.png)
+![Formulaire EventHub](docs/screenshots/formulaire.png)
 
-### Filtre par catégorie
+![Liste EventHub](docs/screenshots/liste.png)
 
-![Filtre par catégorie](docs/screenshots/02-filtre-categorie.png)
+## Vérification
 
-### Détail d'un événement favori
+```bash
+npm run build
+```
 
-![Détail d'un événement favori](docs/screenshots/03-detail-favori.png)
+Le build Angular doit se terminer sans erreur. Une alerte de budget CSS peut apparaître selon la configuration de l'environnement, mais la compilation reste valide.
 
-## Page À propos sur mobile
-![Page À propos mobile](docs/screenshots/04-a-propos-mobile.png)

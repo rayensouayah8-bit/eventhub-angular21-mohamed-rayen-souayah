@@ -41,6 +41,8 @@ nav {
   display: flex;
   align-items: center;
   gap: clamp(0.5rem, 2vw, 1.75rem);
+  flex-wrap: wrap;
+  justify-content: center;
 }
 
 nav a {
